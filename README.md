@@ -8,13 +8,13 @@ The inspiration of this program comes from the shear frustration that I faced wh
 
 It asks you a bunch of questions based on your assignment; location of assignment, the link where the assignment is to be uploaded etc. The way they work is:
 
-#### 1) Select the assignment file in the window that shows up
+** 1) Select the assignment file in the window that shows up**
 
-#### 2) Copy and paste the link of the website in crowdmark where the assignment has to be uploaded
+** 2) Copy and paste the link of the website in crowdmark where the assignment has to be uploaded**
 
-#### 3) Enter y/Y if you want the program to even press the submit button for you
+** 3) Enter y/Y if you want the program to even press the submit button for you**
 
-#### 4) Enter y/Y if you eventually want to delete the individual question pdfs
+** 4) Enter y/Y if you eventually want to delete the individual question pdfs**
 
 ##### Note: (2-4) are all done in the terminal window from where you run the program
 
