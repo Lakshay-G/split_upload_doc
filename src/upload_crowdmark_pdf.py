@@ -111,6 +111,12 @@ def upload_to_crowdmark(driver, upload_link, output_file_names, submit):
         element = WebDriverWait(driver, 4)
 
 
+def delete_question_docs(question_paths, delete_char):
+    if delete_char == 'y' or delete_char == 'Y':
+        for question_path in question_paths:
+            os.remove(question_path)
+
+
 if __name__ == '__main__':
     # asking for all the necessary info
 
@@ -126,6 +132,9 @@ if __name__ == '__main__':
     # ask the user if they want to automate the submit button too
     submit_char = input(
         "Do you want to automate the crowdmark submit button too? (y/n)\n:: ")
+    # ask the user if they want to delete the separate question docs after the process
+    delete_char = input(
+        "Do you want to delete the separate question docs after the process? (y/n)\n:: ")
 
     # step 1: convert the pdf to individual question pdfs
     # output_file_names = split_pdf_to_questions(
@@ -140,3 +149,6 @@ if __name__ == '__main__':
     # step3: upload the individual question pdfs to crowdmark
     upload_to_crowdmark(driver=driver, upload_link=upload_link,
                         output_file_names=output_file_names, submit=submit_char)
+
+    # step4: delete the individual question pdfs if user demands
+    delete_question_docs(output_file_names, delete_char)
