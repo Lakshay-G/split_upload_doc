@@ -6,6 +6,7 @@ from selenium.webdriver.common.by import By
 from tkinter import Tk
 from tkinter.filedialog import askopenfilename
 import os
+import json
 
 
 def split_pdf_to_questions(file_path, file_extension):
@@ -117,7 +118,7 @@ def delete_question_docs(question_paths, delete_char):
             os.remove(question_path)
 
 
-if __name__ == '__main__':
+if __name__ != '__main__':
     # asking for all the necessary info
 
     # file path needed for the assignment document
@@ -152,3 +153,8 @@ if __name__ == '__main__':
 
     # step4: delete the individual question pdfs if user demands
     delete_question_docs(output_file_names, delete_char)
+
+if __name__ == '__main__':
+    with open("resources/inputs.json") as input_file:
+        inputs = json.load(input_file)
+    print(inputs['start_questions'])
