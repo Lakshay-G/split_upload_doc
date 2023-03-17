@@ -1,9 +1,9 @@
 {
     "start_questions": "13 9 1",
     "end_questions": "14 12 8",
-    "username": "",
-    "password": "",
-    "upload_link": "",
-    "submit_char": "",
-    "delete_char": ""
+    "username": "test",
+    "password": "test",
+    "upload_link": "test",
+    "submit_char": "test",
+    "delete_char": "test"
 }
