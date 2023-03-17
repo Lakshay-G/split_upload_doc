@@ -1,9 +1,9 @@
 {
     "start_questions": "13 9 1",
     "end_questions": "14 12 8",
-    "username": "test",
-    "password": "test",
-    "upload_link": "test",
-    "submit_char": "test",
-    "delete_char": "test"
+    "username": "enter crowdmark username",
+    "password": "enter crowdmark password",
+    "upload_link": "enter the crowdmark link where your assignment is",
+    "submit_char": "y",
+    "delete_char": "n"
 }
