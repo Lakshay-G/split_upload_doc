@@ -3,22 +3,22 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium import webdriver
 from PyPDF2 import PdfWriter, PdfReader, PdfReader, PdfWriter
 from selenium.webdriver.common.by import By
-from tkinter import Tk
 from tkinter.filedialog import askopenfilename
 import os
 import json
+from easygui import *
 
 
-def split_pdf_to_questions(file_path, file_extension):
+def split_pdf_to_questions(file_path, file_extension, start_question, end_question):
     '''
     The index 0, 1, 2, 3,.... indicate the question numbers
     The start question array gives the start of a question, based on the index (question number) value
     The end question array gives the end of a question, based on the index (question number) value
     '''
-    start_question = list(
-        map(int, input("Enter start value of questions\n:: ").split()))
-    end_question = list(
-        map(int, input("Enter end value of questions\n:: ").split()))
+    # start_question = list(
+    #     map(int, input("Enter start value of questions\n:: ").split()))
+    # end_question = list(
+    #     map(int, input("Enter end value of questions\n:: ").split()))
 
     input_file_name = file_path+file_extension
     output_file_name = file_path
@@ -62,7 +62,7 @@ def login(username, password):
 
     # initializing the chrome driver
     driver = webdriver.Chrome(
-        "split_upload_doc/resources/chromedriver", options=options)
+        "resources/chromedriver", options=options)
 
     # going to the crowdmark UW login page
     driver.get(
@@ -118,7 +118,75 @@ def delete_question_docs(question_paths, delete_char):
             os.remove(question_path)
 
 
-if __name__ != '__main__':
+def config_inputs():
+    with open("resources/inputs.json") as input_file:
+        inputs = json.load(input_file)
+
+    return_input = []
+    for key in inputs:
+        return_input.append(inputs[key])
+
+    return return_input
+
+
+def login_credentials():
+    with open("resources/login_credentials.json") as login_cred:
+        inputs = json.load(login_cred)
+
+    cred = []
+    for key in inputs:
+        cred.append(inputs[key])
+
+    return cred
+
+
+def gui_app():
+    text = "Kindly enter the following details:"
+
+    # window title and message box title
+    title = "Lakshay-G/Split_upload_doc"
+
+    # list of multiple inputs
+    input_list = ["Start Questions", "End Questions",
+                  "Upload Link", "Submit_char", "Delete_char"]
+
+    # list of default text
+    default_list = ["Enter start value of questions eg. 13 9 1",
+                    "Enter end value of questions eg. 14 12 8",
+                    "enter the crowdmark link where your assignment is",
+                    "do you want to automate the crowdmark submit button too? y/n",
+                    "do you want to delete the separate question docs after the process? y/n"]
+
+  # creating a integer box
+    output = multenterbox(text, title, input_list, default_list)
+
+    # creating a message
+    message = "Entered details are in form of list : \n\n" + str(output)
+
+    # creating a message box
+    msg = msgbox(message, title)
+
+    return output
+
+
+def terminal_inputs():
+
+    start_question = input("Enter start value of questions\n:: ")
+    end_question = input("Enter end value of questions\n:: ")
+    # enter the link of the assignment which needs to be uploaded
+    upload_link = input(
+        "enter the crowdmark link where your assignment is\n:: ")
+    # ask the user if they want to automate the submit button too
+    submit_char = input(
+        "Do you want to automate the crowdmark submit button too? (y/n)\n:: ")
+    # ask the user if they want to delete the separate question docs after the process
+    delete_char = input(
+        "Do you want to delete the separate question docs after the process? (y/n)\n:: ")
+    return [start_question, end_question, upload_link, submit_char, delete_char]
+
+
+if __name__ == '__main__':
+
     # asking for all the necessary info
 
     # file path needed for the assignment document
@@ -127,25 +195,46 @@ if __name__ != '__main__':
     # separating file_path and file_extension separately
     file_path, file_extension = os.path.splitext(file_path_extension)
 
-    # enter the link of the assignment which needs to be uploaded
-    upload_link = input(
-        "Enter link of the assignment which needs to be uploaded\n:: ")
-    # ask the user if they want to automate the submit button too
-    submit_char = input(
-        "Do you want to automate the crowdmark submit button too? (y/n)\n:: ")
-    # ask the user if they want to delete the separate question docs after the process
-    delete_char = input(
-        "Do you want to delete the separate question docs after the process? (y/n)\n:: ")
+    '''
+    In this program I'm giving users 3 ways of inputting data:
+        1. Using an inputs.json file
+        2. Using a GUI app
+        3. Using the command line
+    The parameter input_method is 1 for the first case, 2 for the second case
+    and 3 for the third case. The programmer would have to make the changes in here.
+    '''
+
+    input_method = 3
+
+    if input_method == 1:
+        inputs = config_inputs()
+    elif input_method == 2:
+        inputs = gui_app()
+    else:
+        inputs = terminal_inputs()
+
+    '''
+    The index 0, 1, 2, 3,.... indicate the question numbers
+    The start question array gives the start of a question, based on the index (question number) value
+    The end question array gives the end of a question, based on the index (question number) value
+    '''
+
+    start_question = list(map(int, inputs[0].split()))
+    end_question = list(map(int, inputs[1].split()))
+
+    [upload_link, submit_char, delete_char] = [inputs[2], inputs[3], inputs[4]]
+
+    print([start_question, end_question, upload_link, submit_char, delete_char])
 
     # step 1: convert the pdf to individual question pdfs
-    # output_file_names = split_pdf_to_questions(
-    #     '/Users/lakshaygoel/Documents/Fall2022/mini_projects/upload-crowdmark-pdf-split/document')
-
-    output_file_names = split_pdf_to_questions(file_path, file_extension)
+    output_file_names = split_pdf_to_questions(
+        file_path, file_extension, start_question, end_question)
 
     # step 2: initialize the driver by login()
-    driver = login(username='enter your username',
-                   password='enter your password')
+    # login credentials are saved in login_credentials.json for privacy reasons
+    [username, password] = login_credentials()
+
+    driver = login(username=username, password=password)
 
     # step3: upload the individual question pdfs to crowdmark
     upload_to_crowdmark(driver=driver, upload_link=upload_link,
@@ -153,8 +242,3 @@ if __name__ != '__main__':
 
     # step4: delete the individual question pdfs if user demands
     delete_question_docs(output_file_names, delete_char)
-
-if __name__ == '__main__':
-    with open("resources/inputs.json") as input_file:
-        inputs = json.load(input_file)
-    print(inputs['start_questions'])

@@ -1,9 +1,7 @@
 {
-    "start_questions": "13 9 1",
-    "end_questions": "14 12 8",
-    "username": "enter crowdmark username",
-    "password": "enter crowdmark password",
+    "start_questions": "Enter start value of questions eg. 13 9 1",
+    "end_questions": "Enter end value of questions eg. 14 12 8",
     "upload_link": "enter the crowdmark link where your assignment is",
-    "submit_char": "y",
-    "delete_char": "n"
+    "submit_char": "do you want to automate the crowdmark submit button too? y/n",
+    "delete_char": "do you want to delete the separate question docs after the process? y/n"
 }
