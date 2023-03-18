@@ -10,27 +10,29 @@ It asks you a bunch of questions based on your assignment; location of assignmen
 
 **1) Select the assignment file in the window that shows up**
 
-**2) Copy and paste the link of the website in crowdmark where the assignment has to be uploaded**
+**2) Enter start value of questions eg. 13 9 1. It requires user to select the pages on which each question lies. So in the example above; my question 1 starts on 13th page of the cumulative assignment, question 2 starts on the 9th page and question 3 starts on the 1st page. I know its a weird way to do assignments but I figuered, people might do it like that.**
 
-**3) Enter y/Y if you want the program to even press the submit button for you**
+**3) Enter end value of questions eg. 14 12 8. It requires user to select the pages on which each question ends. So in the example above; my question 1 ends on 14th page of the cumulative assignment, question 2 ends on the 12th page and question 3 ends on the 8st page.**
 
-**4) Enter y/Y if you eventually want to delete the individual question pdfs**
+**4) Copy and paste the link of the website in crowdmark where the assignment has to be uploaded**
 
-##### Note: (2-4) are all done in the terminal window from where you run the program
+**5) Enter y/Y if you want the program to even press the submit button for you**
+
+**6) Enter y/Y if you eventually want to delete the individual question pdfs**
+
+
+
+##### Note: (2-6) can all be done in 3 different ways. 1st: the user can use `inputs.json` file in `resources` folder; 2nd: the user can use a GUI app built in the program; 3rd: the user can input values through terminal window. To change the different modes of input, the user can go in the main.py and change `input_method` to 1, 2 or 3 depending on the input method type they want.
 
 There are 4 steps currently to how this program runs:
 
 ## Step 1: 
 
-The program separates the cumulative assignment into individual question pdfs. For this purpose, the program asks you pages on which the questions lie and pages on which the questions finish. The input for this case goes as follows:
+The program separates the cumulative assignment into individual question pdfs. The input for this case goes as follows:
 
 <img width="217" alt="image" src="https://user-images.githubusercontent.com/59942900/225540056-279d30ef-750d-49ff-8432-6fcc48fa59a1.png">
 
-The first input requires user to select the pages on which each question lies. So in the example above; my question 1 lies on 13th page of the cumulative assignment, question 2 lies on the 9th page and question 3 lies on the 1st page. I know its a weird way to do assignments but I figuered, people might do it like that.
-
-The second input requires user to select the pages on which each question ends. So in the example above; my question 1 ends on 14th page of the cumulative assignment, question 2 ends on the 12th page and question 3 ends on the 8st page. 
-
-In both inputs, each question value is separates by a space. So the first input looks like: `13 9 1` and the second input looks like `14 12 8`.
+The inputs are provided above only, to create a seemless experience. In both inputs, each question value is separates by a space. So the first input looks like: `13 9 1` and the second input looks like `14 12 8`. The program automatically converts these strings to array of numbers.
 
 ## Step 2:
 
