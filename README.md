@@ -10,9 +10,9 @@ It asks you a bunch of questions based on your assignment; location of assignmen
 
 **1) Select the assignment file in the window that shows up**
 
-**2) Enter start value of questions eg. 13 9 1. It requires user to select the pages on which each question lies. So in the example above; my question 1 starts on 13th page of the cumulative assignment, question 2 starts on the 9th page and question 3 starts on the 1st page. I know its a weird way to do assignments but I figuered, people might do it like that.**
+**2) Enter start value of questions eg. `13 9 1`. It requires user to select the pages on which each question lies. So in the example above; my question 1 starts on 13th page of the cumulative assignment, question 2 starts on the 9th page and question 3 starts on the 1st page. I know its a weird way to do assignments but I figuered, people might do it like that.**
 
-**3) Enter end value of questions eg. 14 12 8. It requires user to select the pages on which each question ends. So in the example above; my question 1 ends on 14th page of the cumulative assignment, question 2 ends on the 12th page and question 3 ends on the 8st page.**
+**3) Enter end value of questions eg. `14 12 8`. It requires user to select the pages on which each question ends. So in the example above; my question 1 ends on 14th page of the cumulative assignment, question 2 ends on the 12th page and question 3 ends on the 8st page.**
 
 **4) Copy and paste the link of the website in crowdmark where the assignment has to be uploaded**
 
@@ -36,7 +36,7 @@ The inputs are provided above only, to create a seemless experience. In both inp
 
 ## Step 2:
 
-The program then opens up a new Chrome browser window and logs into your crowdmark account (currently selected for university of waterloo students).
+The program then opens up a new Chrome browser window and logs into your crowdmark account (currently selected for university of waterloo students). The login credentials must be saved in `login_credentials.json` in the `resources` folder.
 
 ## Step 3: 
 
