@@ -105,27 +105,27 @@ def split_pdf_to_questions(file_path, file_extension, start_question, end_questi
 
 
 # def login(username, password):
-    # adding chrome options to enable javascript in the browser
-    options = webdriver.ChromeOptions()
-    options.add_argument("--enable-javascript")
+    # # adding chrome options to enable javascript in the browser
+    # options = webdriver.ChromeOptions()
+    # options.add_argument("--enable-javascript")
 
-    # initializing the chrome driver
-    driver = webdriver.Chrome(
-        "resources/chromedriver", options=options)
+    # # initializing the chrome driver
+    # driver = webdriver.Chrome(
+    #     "resources/chromedriver", options=options)
 
-    # going to the crowdmark UW login page
-    driver.get(
-        "https://app.crowdmark.com/sign-in?force_form=true&institution=waterloo")
+    # # going to the crowdmark UW login page
+    # driver.get(
+    #     "https://app.crowdmark.com/sign-in?force_form=true&institution=waterloo")
 
-    # find username/email field and send the username itself to the input field
-    driver.find_element("id", "user_email").send_keys(username)
+    # # find username/email field and send the username itself to the input field
+    # driver.find_element("id", "user_email").send_keys(username)
 
-    # find password input field and insert password as well
-    driver.find_element("id", "user_password").send_keys(password)
+    # # find password input field and insert password as well
+    # driver.find_element("id", "user_password").send_keys(password)
 
-    # click login button
-    driver.find_element("name", "commit").click()
-    return driver
+    # # click login button
+    # driver.find_element("name", "commit").click()
+    # return driver
 
 
 def delete_question_docs(question_paths, delete_char):
